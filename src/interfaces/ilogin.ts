@@ -4,3 +4,16 @@ export interface loginModal {
     onClose: () => void;
     initialRef: React.RefObject<HTMLElement | null> | (() => void);
 }
+
+export interface login {
+    onClose: () => void;
+    // initialRef: React.RefObject<HTMLElement | null> | (() => void);
+}
+
+export interface TextFiledProps {
+    label: string
+    name:string
+    placeholder:string
+    autoComplete:string
+    type:string
+}

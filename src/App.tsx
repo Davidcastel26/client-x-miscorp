@@ -1,7 +1,8 @@
 import './main.css'
 import { Navbar } from "./components/Navbar"
-import { Route, Routes } from 'react-router-dom'
-import { Home } from './components/screens/Home'
+// import { Route, Routes } from 'react-router-dom'
+// import { Home } from './components/screens/Home'
+import { Views } from './components/Views'
 
 
 function App() {
@@ -10,9 +11,10 @@ function App() {
     <>
     <Navbar /> 
     <div className="container mt-28 mx-auto px-12 py-4">
-     <Routes>
-       <Route path="/" element={<Home/>} />
-     </Routes>
+     {/* <Routes> */}
+     <Views />
+       {/* <Route path="/" element={<Home/>} /> */}
+     {/* </Routes> */}
     </div>
    </>
   )
