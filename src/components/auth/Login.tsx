@@ -1,9 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { Formik } from "formik";
-import * as Yup from "yup";
+
 
 import {
-  // ModalBody,
   ModalFooter,
   Button,
   VStack,
@@ -11,29 +10,53 @@ import {
 
 import { login } from "../../interfaces/ilogin";
 import { TextField } from "./components/TextField";
+import { formSchema } from "../../utils/validationForm";
 
 export const Login: React.FC<login> = ({
   onClose,
-  // initialRef
 }) => {
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate();
 
-  // const formik = useFormik({
+  const url = import.meta.env.VITE_API_CONNECTION || "http://localhost:8440";
+ 
+  const submitForm = (values: any, actions: any) => {
+     console.log('submiteand al gran puta pero en minusculas');
+    const vals = {...values}
+    console.log(vals)
+    actions.resetForm();
+    fetch(`${url}/xcompany/auth/login`,{
+    // fetch(`http://localhost:8440/xcompany/auth/login`,{
+      method: "POST",
+      credentials:"include",
+      headers:{
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify(vals)
+    })
+      .catch( err => {
+        console.log(`${err} ------- IN FORM POST`);
+        return;
+      })
+      .then( res => {
+        if(!res || !res.ok || res.status >= 400){
+          return
+        }
+        return res.json()
+      })
+      .then( (data:any) => {
+        if( !data ) return;
 
-  // })
+        console.log(data +' ------- POST DATA DONE')
+        
+      })
+  }
 
   return (
     <Formik
       initialValues={{ username: "", password: "" }}
-      validationSchema={Yup.object({
-        username: Yup.string().required("User Name is required!"),
-        password: Yup.string().required("Password is required!"),
-      })}
-      onSubmit={(values, actions) => {
-        alert(JSON.stringify(values, null, 2));
-        actions.resetForm();
-      }}
+      validationSchema={formSchema}
+      onSubmit={submitForm}
     >
       <VStack
         as="form"
@@ -57,9 +80,9 @@ export const Login: React.FC<login> = ({
           placeholder="1234!@#"
           autoComplete="off"
         />
-
         <ModalFooter>
-          <Button type="submit" onClick={() => navigate("/actividades")} colorScheme="teal" mr={3}>
+          <Button type="submit" colorScheme="teal" mr={3}>
+          {/* onClick={() => navigate("/actividades")}  */}
             Login
           </Button>
           <Button onClick={onClose}>Cancel</Button>
