@@ -5,7 +5,7 @@ import {HamburgerIcon, CloseIcon} from '@chakra-ui/icons';
 import { NavLink } from './ui/NavLink';
 import { MenuOverlay } from './ui/MenuOverlay';
 import ToggleColorMode from './ui/ToggleColorMode';
-import { useAccountUser } from '../hooks/useAccountUser';
+// import { useAccountUser } from '../hooks/useAccountUser';
 import { useAuth } from '../hooks/usePrivateRoutes';
 
 export const Navbar = () => {

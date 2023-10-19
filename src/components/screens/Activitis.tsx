@@ -1,5 +1,6 @@
 // import React from 'react'
 
+import { TableUsers } from "../ui/TableUsers"
 import { TitleClient } from "../ui/TitleClient"
 
 export const Activitis = () => {
@@ -8,7 +9,7 @@ export const Activitis = () => {
     <div>
       <TitleClient/>
       <div>
-        info
+        <TableUsers/>
       </div>
     </div>
   )
