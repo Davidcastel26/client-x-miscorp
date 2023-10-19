@@ -9,7 +9,7 @@ export const NavLink: React.FC<navbarLinks> = ({ to, children }) => {
     const isActive = useMatch({ path: resolvedPath.pathname, end: true })
 
     return (
-        <a className={isActive ? "active " : ""}>
+        <div className={isActive ? "active " : ""}>
             <Link 
                 to={to} 
                 className={ 'block text-[#ADB7BE] sm:text-xl sm:font-medium rounded md:p-0 hover:text-white hover:underline' 
@@ -17,6 +17,6 @@ export const NavLink: React.FC<navbarLinks> = ({ to, children }) => {
             >
                 {children}
             </Link>
-        </a>
+        </div>
     )
 }

@@ -27,7 +27,7 @@ export const TextField: React.FC<TextFiledProps> = ({
         <Input 
             as={Field}
             {...field}
-            name={name}
+            value={name}
             placeholder={placeholder}
             autoComplete={autoComplete}
             type={type}

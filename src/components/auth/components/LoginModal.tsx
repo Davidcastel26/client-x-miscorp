@@ -12,7 +12,7 @@ import {
   } from "@chakra-ui/react";
 import { Login } from '../Login';
 
-export const ModalLogin: React.FC<loginModal> = (
+export const LoginModal: React.FC<loginModal> = (
 {
     // finalRef,
     isOpen,

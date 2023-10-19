@@ -9,7 +9,7 @@ function App() {
   return (
     <AccountUserProvider>
       <Navbar /> 
-      <div className="container mt-28 mx-auto px-12 py-4">
+      <div className="container mt-10 mx-auto px-10">
         <Views />
       </div>
    </AccountUserProvider>
