@@ -10,7 +10,7 @@ import { useAuth } from '../hooks/usePrivateRoutes';
 
 export const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false)
-  const { user } = useAccountUser()
+  // const { user } = useAccountUser()
   const isAuth = useAuth()
   return (
     <nav className="bg-gray-800">
