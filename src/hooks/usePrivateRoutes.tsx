@@ -9,5 +9,5 @@ export const useAuth = () => {
 
 export const PrivateRoutes = () => {
     const isAuth = useAuth();
-    return isAuth ? <Outlet /> : <Navigate to="/home" />
+    return isAuth ? <Outlet /> : <Navigate to="/" />
 }

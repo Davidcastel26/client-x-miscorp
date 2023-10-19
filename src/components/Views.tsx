@@ -15,6 +15,7 @@ export const Views = () => {
   </Routes>) 
   :(
     <Routes>
+      <Route path="/" element={<Home />} />
       <Route element={<PrivateRoutes/>}>
         <Route path="/actividades" element={<Activitis />} />
         <Route path="/perfil" element={<Profile />} />

@@ -20,54 +20,16 @@ import { login } from "../../interfaces/ilogin";
 export const Login: React.FC<login> = ({
   onClose,
 }) => {
+
   const navigate = useNavigate();
   const [ errorSigUp, setErrorSigUp ] = useState< null | any>(null)
   const url = import.meta.env.VITE_API_CONNECTION || "http://localhost:8440";
-  const { setUser } = useAccountUser()
+  const { user, setUser } = useAccountUser()
   const [formData, setFormData] = useState({
     username: '',
     password: '',
   });
-  // const formRef = useRef<HTMLFormElement>(null);
-  
-  // const submitt = (values:any, actions:any) => {
-  //    console.log('submiteand al gran puta pero en minusculas');
-  //   const vals = {...values}
-  //   console.log(vals+ '------------------ VALUES')
-  //   actions.resetForm();
-  //   // fetch(`${url}/xcompany/auth/login`,{
-  //   fetch(`http://localhost:8440/xcompany/auth/login`,{
-  //     method: "POST",
-  //     // credentials:"include",
-  //     headers:{
-  //         "Content-Type": "application/json"
-  //     },
-  //     body: JSON.stringify(vals)
-  //   })
-  //     .catch( err => {
-  //       console.log(`${err} ------- IN FORM POST`);
-  //       return;
-  //     })
-  //     .then( res => {
-  //       if(!res || !res.ok || res.status >= 400){
-  //         return
-  //       }
-  //       return res.json()
-  //     })
-  //     .then( (data:any) => {
-  //       if( !data ) return;
-
-  //       setUser({...data})
-
-  //       if(data.status){
-  //           setErrorSigUp(data.status)
-  //       }else if( data.loggedIn){
-  //           console.log(data + '---------------DATA LOGGEDIN');
-  //           navigate('/actividades')
-  //       }
-  //     })
-  // }
-
+ 
   const onChange = (e:any) => {
     const { name, value } = e.target;
     setFormData({
@@ -78,7 +40,7 @@ export const Login: React.FC<login> = ({
 
   const handleSubmit = async (e:any) => {
     e.preventDefault();
-    console.log('Form data submitted:', formData);
+
     fetch(`${url}/xcompany/auth/login`, {
       method: "POST",
       credentials: "include",
@@ -86,24 +48,24 @@ export const Login: React.FC<login> = ({
         "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
+    }).catch( err => {
+      console.log(`${err} ------- IN FORM POST`);
+      return;
     }).then((data:any) => {
       if( !data ) return;
 
       setUser({...data})
-      navigate('/actividades')
-      console.log(data)
-      if(data.status){
-          setErrorSigUp(data.status)
-          
+      // console.log(typeof data.status)
+      console.log(typeof data.statusText)
+      if(data.status === 400 ){
+          setErrorSigUp(data.statusText)
       }
-      else if( data.loggedIn){
-          console.log(data + '---------------DATA LOGGEDIN');
-          
-      }
+      // else if( data.loggedIn ){
+          // onClose()
+          // 'onclick'={(e) => onClose(e)}
+      return navigate('/actividades')
+      // }
       
-    }).catch( err => {
-      console.log(`${err} ------- IN FORM POST`);
-      return;
     })
   };
 
@@ -135,16 +97,12 @@ export const Login: React.FC<login> = ({
         />
         </FormControl> 
         <ModalFooter>
-        <Button colorScheme="blue" type="submit" onClick={onClose}>
+        <Button colorScheme="blue" type="submit" >
             Login
           </Button>
           <Button variant="ghost" mr={3} onClick={onClose}>
             Cancel
           </Button>
-          {/* <Button type="submit" colorScheme="teal" mr={3}>
-            Login
-          </Button>
-          <Button onClick={onClose}>Cancel</Button> */}
         </ModalFooter>
     </form>
   );

@@ -1,6 +1,6 @@
 import { Text } from "@chakra-ui/react"
 import { BtnLogin } from "../auth/components/CustomBtn"
-import { useAccountUser } from "../../hooks/useAccountUser"
+// import { useAccountUser } from "../../hooks/useAccountUser"
 import { useAuth } from "../../hooks/usePrivateRoutes"
 
 

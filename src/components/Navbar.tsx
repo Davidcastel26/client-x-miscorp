@@ -6,10 +6,12 @@ import { NavLink } from './ui/NavLink';
 import { MenuOverlay } from './ui/MenuOverlay';
 import ToggleColorMode from './ui/ToggleColorMode';
 import { useAccountUser } from '../hooks/useAccountUser';
+import { useAuth } from '../hooks/usePrivateRoutes';
 
 export const Navbar = () => {
   const [navbarOpen, setNavbarOpen] = useState(false)
   const { user } = useAccountUser()
+  const isAuth = useAuth()
   return (
     <nav className="bg-gray-800">
       <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -54,11 +56,11 @@ export const Navbar = () => {
           <div className="menu hidden md:block md:w-auto sm:ml-6" id="navbar">
             <ul className="flex md:flex-row md:space-x-8 mt-0 pr-9">
               {
-                user === null
+                isAuth
                 ? <><NavLink to="/actividades">Actividades</NavLink>
                 <NavLink to="/perfil">Perfil</NavLink>
                 <ToggleColorMode /></>
-                : <ToggleColorMode />
+                :<ToggleColorMode />
               }
               
             </ul>
