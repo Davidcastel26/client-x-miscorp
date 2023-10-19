@@ -24,7 +24,7 @@ export const TableUsers = ({}) => {
     
     <TableContainer>
     <Table variant='striped' colorScheme='teal'>
-      <TableCaption>Pokemons API</TableCaption>
+      <TableCaption>X CORP API</TableCaption>
       <Thead>
         <Tr>
           <Th>User Name</Th>
